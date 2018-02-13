@@ -1,0 +1,16 @@
+{
+    "name": "grp",
+    "version": "0.0.1",
+    "main": "proxyd.js",
+    "engines": {
+        "node": "9.5.0"
+    },
+    "dependencies": {
+        "elliptic": "*",
+        "websocket": "*"
+    },
+    "scripts": {
+        "start": "node proxyd.js"
+    },
+    "how-to-install-on-heroku": "$ heroku create && git push heroku master"
+}
