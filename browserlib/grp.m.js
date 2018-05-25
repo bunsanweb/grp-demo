@@ -1,3 +1,5 @@
+import elliptic from "https://dev.jspm.io/elliptic";
+
 // broeswer side interface like ServiceWorker "fetch" event process
 function toHex(bytes) {
     return Array.from(
