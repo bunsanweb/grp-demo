@@ -1,4 +1,4 @@
-import ReverseTarget from "../../browserlib/grp.m.js";
+import ReverseTarget from "./grp.m.js";
 
 main().catch(console.error);
 
@@ -18,14 +18,14 @@ async function main() {
     const rootUrl = `${proxyUrl}${target.ident.id}/`;
     ctx.url.textContent = ctx.url.href = rootUrl;
     target.addEventListener("fetch", ev => {
-        console.log(ev.request.url);
         if (ev.request.method === "GET" && ev.request.url === rootUrl) {
             ev.respondWith(indexResponse(ctx.files.files));
             return;
         }
         if (ev.request.method === "GET" &&
             ev.request.url.startsWith(rootUrl)) {
-            const name = ev.request.url.slice(rootUrl.length);
+            const name = decodeURIComponent(
+                ev.request.url.slice(rootUrl.length));
             const file = Array.from(ctx.files.files).find(
                 file => file.name === name);
             if (file) {
@@ -38,8 +38,8 @@ async function main() {
 
 async function indexResponse(files) {
     const lis = Array.from(
-        files, file =>
-            `<li><a href="${file.name}" target="_blank">${file.name}</a>`);
+        files, file => `<li><a href="${encodeURIComponent(file.name)
+                        }" target="_blank">${file.name}</a>`);
     const body = `<!doctype html><html><head></head>
 <body><h1>files</h1><ul>${lis.join("") || "<li>none</li>"}</ul></body></html>`;
     return new Response(body, {

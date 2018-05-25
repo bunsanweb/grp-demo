@@ -21,7 +21,8 @@ window.addEventListener("load", async ev => {
         }
         if (ev.request.method === "GET" &&
             ev.request.url.startsWith(rootUrl)) {
-            const name = ev.request.url.slice(rootUrl.length);
+            const name = decodeURIComponent(
+                ev.request.url.slice(rootUrl.length));
             const file = Array.from(ctx.files.files).find(
                 file => file.name === name);
             if (file) {
@@ -33,8 +34,8 @@ window.addEventListener("load", async ev => {
 
     async function indexResponse(files) {
         const lis = Array.from(
-            files, file =>
-                `<li><a href="${file.name}" target="_blank">${file.name}</a>`);
+            files, file => `<li><a href="${encodeURIComponent(file.name)
+                            }" target="_blank">${file.name}</a>`);
         const body = `<!doctype html><html><head></head>
 <body><h1>files</h1><ul>${lis.join("") || "<li>none</li>"}</ul></body></html>`;
         return new Response(body, {
