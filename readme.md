@@ -100,6 +100,8 @@ Wait a little, then the page shows some link to a URL on `proxyUrl`.
 After clicked to open the link, 
 the text `Hello World! from ...` generated on the browser tab is shown.
 
+For more details, see [examples](./examples/).
+
 ## Interface for client side scripting
 
 NOTE: these are experimental structure.
