@@ -208,28 +208,41 @@ this.ReverseTarget = function () {
     }
     const handleAsRequest = isSupportedStreamBodyInRequest() ?
           handleAsStreamRequest : handleAsArrayBufferRequest;
+
+    async function connectToTarget(target, url, priv) {
+        const {ident, port} = await connect(url, priv);
+        privates.set(target, {ident, port, url, priv});
+        port.addEventListener("close", ({code, wasClean, reason}) => {
+            // TBD: which event used
+            if (!wasClean || code != 1000) {
+                const event = new ErrorEvent("error" , {
+                    message: "closed",
+                    error: {code, wasClean, reason},
+                });
+                target.dispatchEvent(event);
+            }
+        }, false);
+        handleAsRequest(target, port);
+        return target;
+    }
     
     // Only reveals `target = await ReverseTarget.connect(proxyUrl, privkey)`
-    return class ReverseTarget {
+    return class ReverseTarget extends EventTarget {
         static async connect(url, priv = null) {
-            //NOTE: something EventTarget
-            const target = new Worker("data:text/javascript,true");
-            //const target = document.createElement("div");
-            const {ident, port} = await connect(url, priv);
-            target.ident = ident;
-            target.close = () => {port.close();};
-            port.addEventListener("close", ({code, wasClean, reason}) => {
-                // TBD: which event used
-                if (!wasClean || code != 1000) {
-                    const event = new ErrorEvent("error" , {
-                        message: "closed",
-                        error: {code, wasClean, reason},
-                    });
-                    target.dispatchEvent(event);
-                }
-            }, false);
-            handleAsRequest(target, port);
-            return target;
+            return await connectToTarget(new this(), url, priv);
+        }
+        close() {
+            privates.get(this).port.close();
+        }
+        get ident() {
+            return Object.assign({}, privates.get(this).ident);
+        }
+        async reconnect(url) {
+            if (privates.get(this).port.readyState !== WebSocket.CLOSED) {
+                throw Error("Connection alived");
+            }
+            const {priv} = privates.get(this);
+            return await connectToTarget(this, url, priv);
         }
     };
 }();
