@@ -133,5 +133,6 @@ NOTE: These are experimental structures.
 
 ## License
 
-TBD
+GPLv3
+
 
