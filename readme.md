@@ -1,17 +1,17 @@
 # `grp`
 
-NOTE: this implementation is a prototype.
+NOTE: This implementation is a prototype.
 
 ## What is `grp`
 
 `grp` is a general-purpose HTTP reverse proxy system for JavaScript programs
-such as run on modern browsers.
+that can run on modern browsers.
 
-The `grp` consists two parts:
+`grp` consists of two parts:
 
 - `proxyd.js`: a node.js program as a HTTP reverse proxy server
-- `browserlib`: a JavaScript module for connecting to the proxyd.js server as
-  a programming style of 
+- `browserlib`: a JavaScript module for connecting to the proxyd.js server in
+  the programming style of 
   [`FetchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent) 
   on `ServiceWorker`.
 
@@ -27,10 +27,10 @@ proxy host started on http://0.0.0.0:3000/
 ```
 
 After that, it can access the server at `http://localhost:3000/`
-called as `proxyUrl` in examples.
+called `proxyUrl` in examples.
 
 NOTE: You can also specify an accessible `IP` address and `PORT` number with 
-environmental variables as:
+environmental variables using:
 
 ```sh
 $ IP=127.0.0.1 PORT=8080 npm start
@@ -42,12 +42,12 @@ proxy host started on http://127.0.0.1:8080/
 
 The `browserlib` directory contains:
 
-- `grp.js`: as a library script for embedding with traditional `script` tag.
+- `grp.js`: A library script for embedding with the traditional `script` tag.
      - it also requires embedding the 
        [`elliptic.js`](https://github.com/indutny/elliptic) library in HTML.
-- `grp.m.js`: as a ES6 module for modern browsers
+- `grp.m.js`: A ES6 module for modern browsers.
 
-This is an example as simple Web server on a browser tab with `grp.m.js`:
+The following is an example of a simple Web server on a browser tab using `grp.m.js`:
 
 ```html
 <!-- hello.m.html -->
@@ -89,22 +89,22 @@ async function main() {
 </html>
 ```
 
-Put the `grp.m.js` file into the same directory of the `hello.m.html`.
+Put the `grp.m.js` file into the same directory as `hello.m.html`.
 
-After `proxyd.js` ran at localhost, 
+After `proxyd.js` runs at localhost, 
 directly open the `hello.m.js` file with a modern browser enabled ES module
-(firefox-60), or open via simple http server such as 
+(firefox-60), or via a simple http server such as 
 `python3 -m http.server` (chrome).
 
-Wait a little, then the page shows some link to a URL on `proxyUrl`.
-After clicked to open the link, 
-the text `Hello World! from ...` generated on the browser tab is shown.
+Wait a little, then the page will show some links to a URL on `proxyUrl`.
+After clicking the link, 
+the text `Hello World! from ...` will be generated in the browser tab.
 
 For more details, see [examples](./examples/).
 
 ## Interface for client side scripting
 
-NOTE: these are experimental structure.
+NOTE: These are experimental structures.
 
 - static `ReverseTarget.connect(proxyUrl, privateKey = null)`: 
   returns a `Promise` of [`EventTarget`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) object called as `target`
