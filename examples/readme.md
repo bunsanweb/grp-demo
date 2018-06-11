@@ -1,8 +1,8 @@
 # Examples
 
-Here are several example applications to connet `proxyd.js`.
+Here are several example applications to connect `proxyd.js`.
 
-You can **open the HTML file** in your browser.
+You can **open the HTML files** in your browser.
 The application will automatically
 connect to a `proxyd.js` server specified as a `proxyUrl` in its js file,
 then it provides proxy based URLs access from remote browsers.
