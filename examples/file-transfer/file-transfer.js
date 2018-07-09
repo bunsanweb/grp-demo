@@ -53,7 +53,7 @@ window.addEventListener("load", async ev => {
         return new Response(file, {
             status: 200,
             headers: new Headers({
-                "last-modified": file.lastModifiedDate.toUTCString(),
+                "last-modified": new Date(file.lastModified).toUTCString(),
                 "content-length": file.size,
                 "content-type": file.type,
             }),
