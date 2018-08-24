@@ -74,7 +74,7 @@ async function doOffer(ctx) {
     const answer0 = new RTCSessionDescription({
         type: "answer", sdp: answerSdp0,
     });
-    ctx.pc.setRemoteDescription(answer0);
+    //ctx.pc.setRemoteDescription(answer0);
     
     // poll answer
     const get = new Request(url, {
