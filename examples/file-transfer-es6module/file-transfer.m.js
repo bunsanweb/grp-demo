@@ -1,4 +1,4 @@
-import ReverseTarget from "./grp.m.js";
+import ReverseTarget from "../../browserlib/grp.m.js";
 
 main().catch(console.error);
 
