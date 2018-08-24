@@ -11,7 +11,8 @@ window.addEventListener("load", async ev => {
         document.execCommand("copy");
     }, false);
     
-    const proxyUrl = "http://localhost:3000/";
+    //const proxyUrl = "http://localhost:3000/";
+    const proxyUrl = "https://radiant-sea-42997.herokuapp.com/";
     const target = await ReverseTarget.connect(proxyUrl);
     target.addEventListener("fetch", ev => {
         console.log("request arrived", ev.request.method, ev.request.url);

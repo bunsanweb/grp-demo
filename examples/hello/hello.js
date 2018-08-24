@@ -1,6 +1,7 @@
 // web server on tab example
 window.addEventListener("load", async ev => {
-    const proxyUrl = "http://localhost:3000/";
+    //const proxyUrl = "http://localhost:3000/";
+    const proxyUrl = "https://radiant-sea-42997.herokuapp.com/";
     const target = await ReverseTarget.connect(proxyUrl);
     target.addEventListener("fetch", ev => {
         ev.respondWith((async () => {

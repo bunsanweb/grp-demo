@@ -4,7 +4,8 @@ main().catch(console.error);
 
 // web server on tab example
 async function main() {
-    const proxyUrl = "http://localhost:3000/";
+    //const proxyUrl = "http://localhost:3000/";
+    const proxyUrl = "https://radiant-sea-42997.herokuapp.com/";
     const target = await ReverseTarget.connect(proxyUrl);
     target.addEventListener("fetch", ev => {
         ev.respondWith((async () => {

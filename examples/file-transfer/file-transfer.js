@@ -9,7 +9,8 @@ window.addEventListener("load", async ev => {
     }
     const priv = fromHex(location.hash.slice(1));
 
-    const proxyUrl = "http://localhost:3000/";
+    //const proxyUrl = "http://localhost:3000/";
+    const proxyUrl = "https://radiant-sea-42997.herokuapp.com/";
     const target = await ReverseTarget.connect(proxyUrl, priv);
     const rootUrl = `${proxyUrl}${target.ident.id}/`;
     ctx.url.textContent = ctx.url.href = rootUrl;
