@@ -1,6 +1,12 @@
-This repository contains  working examples linked `proxyd.js` run on `heroku`.
+This repository is for working examples linked to `proxyd.js` run on `heroku`:
 
-
+- [hello](https://raw.githack.com/bunsanweb/grp-demo/master/examples/hello/hello.html)
+- [hello-es6module](https://raw.githack.com/bunsanweb/grp-demo/master/examples/hello-es6module/hello.m.html)
+- [file-transfer](https://raw.githack.com/bunsanweb/grp-demo/master/examples/file-transfer/file-transfer.html)
+- [file-transfer-es6module](https://raw.githack.com/bunsanweb/grp-demo/master/examples/file-transfer-es6module/file-transfer.m.html)
+- [webrtc-im](https://github.com/bunsanweb/grp-demo/tree/master/examples/webrtc-im/)
+    - [answer side](https://raw.githack.com/bunsanweb/grp-demo/master/examples/webrtc-im/answer.html)
+    - [offer side](https://raw.githack.com/bunsanweb/grp-demo/master/examples/webrtc-im/offer.html)
 
 # `grp`
 
